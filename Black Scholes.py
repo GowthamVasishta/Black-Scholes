@@ -19,6 +19,7 @@ class option:
         self.underlyingVol = underlyingVol
         self.timeToExpiry = timeToExpiry
         
+        # Call price calculation methods as per option type
         if(optionType == "call"):
             self.price = self.callOption(underlyingPrice, strike, rate, underlyingVol, timeToExpiry)
         elif(optionType == "put"):
