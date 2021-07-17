@@ -28,8 +28,29 @@ class option:
         else:
             print("Invalid Option Type")
         
-    def callOption():
-        print("Call Option")
         
+        
+        
+    def callOption(self, underlyingPrice, strike, rate, underlyingVol, timeToExpiry):
+        
+        # Compute d1
+        d1 = (math.log(underlyingPrice / strike) + (((rate + pow(underlyingVol, 2))/2) * timeToExpiry)) / (underlyingVol * math.sqrt(timeToExpiry)) 
+        
+        # Compute d2
+        d2 = d1 - (underlyingVol * math.sqrt(timeToExpiry))
+        
+        # Lookup N(d1)
+        nd1 = norm.cdf(d1)
+        
+        # Lookup N(d2)
+        nd2 = norm.cdf(d2)
+        
+        # Calc call option price
+        price = (underlyingPrice * nd1) - (strike * math.exp(-rate *  timeToExpiry) * nd2)
+        
+        return price
+        
+    
+    
     def putOption():
         print("put option")
