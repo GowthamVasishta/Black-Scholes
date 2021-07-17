@@ -11,11 +11,11 @@ from scipy.stats import norm
 
 class option:
     
-    def __int__(self, optionType, underlyingPrice, strike, rate, underlyingVol, timeToExpiry):
+    def __init__(self, optionType, underlyingPrice, strike, rate, underlyingVol, timeToExpiry):
         
         self.optionType = optionType
         self.underlyingPrice = underlyingPrice
-        self.strike - strike
+        self.strike = strike
         self.rate = rate
         self.underlyingVol = underlyingVol
         self.timeToExpiry = timeToExpiry
@@ -54,3 +54,7 @@ class option:
     
     def putOption():
         print("put option")
+        
+        
+option = option("call", 125.94, 125, 0.0446, 0.83, 0.0959)
+print(option.price)
