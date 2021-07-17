@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Jul 17 20:07:21 2021
+Black Scholes Formula
 
+@Created: Sat Jul 17 20:07:21 2021
 @author: Gowtham
 """
 
