@@ -19,7 +19,12 @@ class option:
         self.underlyingVol = underlyingVol
         self.timeToExpiry = timeToExpiry
         
-        if(self.)
+        if(optionType == "call"):
+            self.price = self.callOption(underlyingPrice, strike, rate, underlyingVol, timeToExpiry)
+        elif(optionType == "put"):
+            self.price = self.putOption(underlyingPrice, strike, rate, underlyingVol, timeToExpiry)
+        else:
+            print("Invalid Option Type")
         
     def callOption():
         print("Call Option")
