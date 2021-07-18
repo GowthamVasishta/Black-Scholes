@@ -69,16 +69,12 @@ class Option:
         
     
     def get_d1(self):
-        
         self.d1 = (math.log(self.underlying_price / self.option_strike) + ((self.riskfree_rate + (pow(self.underlying_vol, 2) / 2)) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry))
-        
         return self.d1
     
     
     def get_d2(self):
-        
         self.d2 = self.d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
-        
         return self.d2
 
 
