@@ -24,23 +24,22 @@ class Option:
         
     def price(self):
         
-        if(self.option_type == "call"): 
-           price = self.call_price()
-        elif(self.option_type == "Put"):
-           price = self.put_price()
+        if(self.option_type == "call"):
+            price = self.call_price()
+        elif(self.option_type == "put"):
+            price = self.put_price()
         else:
             return "Error: Invalid option type"
         
         return price
     
     
-    
     def call_price(self):
-        
+           
         # Compute d1
-        d1 = (math.log(self.underlying_price / self.option_strike) + (((self.riskfree_rate + pow(self.underlying_vol, 2))/2) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        d1 = self.get_d1()
         # Compute d2
-        d2 = d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        d2 = self.get_d2()
         # Lookup N(d1)
         nd1 = norm.cdf(d1)
         # Lookup N(d2)
@@ -50,29 +49,39 @@ class Option:
         price = (self.underlying_price * nd1) - (self.option_strike * math.exp(-self.riskfree_rate *  self.time_to_expiry) * nd2)
         
         return price
-    
     
     
     def put_price(self):
         
-        # Compute d1
-        d1 = (math.log(self.underlying_price / self.option_strike) + (((self.riskfree_rate + pow(self.underlying_vol, 2))/2) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry)) 
-        
+       # Compute d1
+        d1 = self.get_d1()
         # Compute d2
-        d2 = d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
-        
+        d2 = self.get_d2()
         # Lookup N(d1)
-        nd1 = norm.cdf(d1)
-        
+        nd1 = norm.cdf(-d1)
         # Lookup N(d2)
-        nd2 = norm.cdf(d2)
+        nd2 = norm.cdf(-d2)
         
-        # Calc call option price
-        price = (self.underlying_price * nd1) - (self.option_strike * math.exp(-self.riskfree_rate *  self.time_to_expiry) * nd2)
+        # Calc put option price
+        price = (self.option_strike * math.exp(-self.riskfree_rate *  self.time_to_expiry) * nd2) - (self.underlying_price * nd1) 
         
         return price
         
+    
+    def get_d1(self):
         
-option = Option("call", 125.94, 125, 0.0446, 0.83, 0.0959)
+        self.d1 = (math.log(self.underlying_price / self.option_strike) + ((self.riskfree_rate + (pow(self.underlying_vol, 2) / 2)) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        
+        return self.d1
+    
+    
+    def get_d2(self):
+        
+        self.d2 = self.d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        
+        return self.d2
+
+
+option = Option("put", 125.94, 125, 0.0446, 0.83, 0.0959)
 price = option.price()
 print(price)
