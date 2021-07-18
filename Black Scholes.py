@@ -22,17 +22,6 @@ class Option:
         self.timeToExpiry = timeToExpiry
         
         
-        # # Call price calculation methods as per option type
-        # if(optionType == "call"):
-        #     self.price = self.callPrice()
-        # elif(optionType == "put"):
-        #     self.price = self.putPrice()
-        # else:
-        #     print("Invalid Option Type")
-        
-        
-        
-        
     def Price(self):
         
         if(self.optionType == "call"):
