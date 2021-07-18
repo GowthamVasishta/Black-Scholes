@@ -74,8 +74,15 @@ class Option:
     
     
     def get_d2(self):
-        self.d2 = self.d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        
+        try:
+            self.d2 = self.d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
+        except AttributeError:
+            self.get_d1()
+            self.get_d2()
+            
         return self.d2
+
 
 
 option = Option("put", 125.94, 125, 0.0446, 0.83, 0.0959)
