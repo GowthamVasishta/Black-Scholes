@@ -9,10 +9,11 @@ Black Scholes Formula
 import math
 from scipy.stats import norm
 
-class option:
+class Option:
     
     def __init__(self, optionType, underlyingPrice, strike, rate, underlyingVol, timeToExpiry):
         
+        # Instance attributes
         self.optionType = optionType
         self.underlyingPrice = underlyingPrice
         self.strike = strike
@@ -22,7 +23,7 @@ class option:
         
         # Call price calculation methods as per option type
         if(optionType == "call"):
-            self.price = self.callOption(underlyingPrice, strike, rate, underlyingVol, timeToExpiry)
+            self.price = self.callOption()
         elif(optionType == "put"):
             self.price = self.putOption(underlyingPrice, strike, rate, underlyingVol, timeToExpiry)
         else:
@@ -31,13 +32,13 @@ class option:
         
         
         
-    def callOption(self, underlyingPrice, strike, rate, underlyingVol, timeToExpiry):
+    def callOption(self):
         
         # Compute d1
-        d1 = (math.log(underlyingPrice / strike) + (((rate + pow(underlyingVol, 2))/2) * timeToExpiry)) / (underlyingVol * math.sqrt(timeToExpiry)) 
+        d1 = (math.log(self.underlyingPrice / self.strike) + (((self.rate + pow(self.underlyingVol, 2))/2) * self.timeToExpiry)) / (self.underlyingVol * math.sqrt(self.timeToExpiry)) 
         
         # Compute d2
-        d2 = d1 - (underlyingVol * math.sqrt(timeToExpiry))
+        d2 = d1 - (self.underlyingVol * math.sqrt(self.timeToExpiry))
         
         # Lookup N(d1)
         nd1 = norm.cdf(d1)
@@ -46,7 +47,7 @@ class option:
         nd2 = norm.cdf(d2)
         
         # Calc call option price
-        price = (underlyingPrice * nd1) - (strike * math.exp(-rate *  timeToExpiry) * nd2)
+        price = (self.underlyingPrice * nd1) - (self.strike * math.exp(-self.rate *  self.timeToExpiry) * nd2)
         
         return price
         
@@ -56,5 +57,5 @@ class option:
         print("put option")
         
         
-option = option("call", 125.94, 125, 0.0446, 0.83, 0.0959)
+option = Option("call", 125.94, 125, 0.0446, 0.83, 0.0959)
 print(option.price)
