@@ -24,14 +24,10 @@ class Option:
         
     def price(self):
         
-        if(self.option_type == "call"):
-            
+        if(self.option_type == "call"): 
            price = self.call_price()
-        
         elif(self.option_type == "Put"):
-            
            price = self.put_price()
-        
         else:
             return "Error: Invalid option type"
         
@@ -42,14 +38,11 @@ class Option:
     def call_price(self):
         
         # Compute d1
-        d1 = (math.log(self.underlying_price / self.option_strike) + (((self.riskfree_rate + pow(self.underlying_vol, 2))/2) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry)) 
-        
+        d1 = (math.log(self.underlying_price / self.option_strike) + (((self.riskfree_rate + pow(self.underlying_vol, 2))/2) * self.time_to_expiry)) / (self.underlying_vol * math.sqrt(self.time_to_expiry))
         # Compute d2
         d2 = d1 - (self.underlying_vol * math.sqrt(self.time_to_expiry))
-        
         # Lookup N(d1)
         nd1 = norm.cdf(d1)
-        
         # Lookup N(d2)
         nd2 = norm.cdf(d2)
         
