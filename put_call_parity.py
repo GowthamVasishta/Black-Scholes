@@ -11,17 +11,19 @@ sys.path.append(".")
 
 from option import Option
 
-# Option(Type, spot, strike,rate, vol, time to maturity)
-put_option = Option("put", 125.94, 125, 0.0446, 0.83, 0.0959)
-call_option= Option("call", 125.94, 125, 0.0446, 0.83, 0.0959)
 
+spot = 125.94
+strike = 125
+riskfree_rate = 0.0446
+vol = 0.83
+time_to_maturity = 0.0959
+
+put_option = Option("put", spot, strike, riskfree_rate, vol, time_to_maturity)
+call_option= Option("call", spot, strike, riskfree_rate, vol, time_to_maturity)
 
 put_premium = put_option.price()
 call_premium = call_option.price()
-strike = put_option.option_strike
-spot = put_option.underlying_price
-riskfree_rate = put_option.riskfree_rate
-time_to_maturity = put_option.time_to_expiry
+
 
 # LHS of put call parity
 lhs = put_premium + spot
