@@ -11,7 +11,6 @@ sys.path.append(".")
 
 from option import Option
 
-
 spot = 125.94
 strike = 125
 riskfree_rate = 0.0446
