@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jul 20 22:55:42 2021
+Put Call Parity - Validation
 
+@Created: on Tue Jul 20 22:55:42 2021
 @author: Gowtham
 """
 
