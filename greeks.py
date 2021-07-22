@@ -68,7 +68,7 @@ class Greeks(Option):
         theta
         -------
         float
-            rate of time value of decay
+            rate of time value decay
 
         """
         
