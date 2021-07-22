@@ -11,7 +11,7 @@ import math
 
 sys.path.append(".")
 
-from option import Option
+from pricer import Option
 
 spot = 125.94
 strike = 125
