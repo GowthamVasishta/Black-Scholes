@@ -12,7 +12,7 @@ from scipy.stats import norm
 
 sys.path.append(".")
 
-from option import Option
+from pricer import Option
 
 class Greeks(Option):
     
