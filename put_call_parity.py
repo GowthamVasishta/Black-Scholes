@@ -6,6 +6,7 @@ Created on Tue Jul 20 22:55:42 2021
 """
 
 import sys
+import math
 
 sys.path.append(".")
 
@@ -28,10 +29,10 @@ call_premium = call_option.price()
 lhs = put_premium + spot
 
 # RHS of put call parity
-rhs = call_premium + (strike / pow((1 + riskfree_rate), time_to_maturity))
+rhs = call_premium + (strike * math.exp(- riskfree_rate * time_to_maturity))
 
 ## check if LHS and RHS are equal
-if(round(lhs,1) == round(rhs, 1)):
+if(round(lhs,3) == round(rhs, 3)):
     print("Equal")
 else:
     print("Not equal")
