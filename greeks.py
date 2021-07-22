@@ -62,16 +62,6 @@ class Greeks(Option):
     
     def get_theta(self):
         
-        
-        """
-        
-        theta
-        -------
-        float
-            rate of time value decay
-
-        """
-        
         d1 = self.get_d1()
         d2 = self.get_d2()
         nd2 = norm.cdf(d2)
