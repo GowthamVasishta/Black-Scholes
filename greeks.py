@@ -77,6 +77,9 @@ class Greeks(Option):
         
         return theta
     
+    
+    
+    
 option = Greeks("call", 125.94, 125, 0.0446, 0.83, 0.0959)
 gamma = option.get_gamma()
 print(gamma)
