@@ -16,7 +16,6 @@ from option import Option
 
 class Greeks(Option):
     
-    
     def get_delta(self):
         
         if(self.option_type == "call"):
