@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Black Scholes Formula
+Pricing options through Black Scholes Merton Model
 
 @Created: Sat Jul 17 20:07:21 2021
 @author: Gowtham
