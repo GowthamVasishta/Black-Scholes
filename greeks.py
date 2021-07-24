@@ -15,7 +15,7 @@ sys.path.append(".")
 from pricer import Option
 
 class Greeks(Option):
-    
+      
     def get_delta(self):
         
         if(self.option_type == "call"):
@@ -76,9 +76,3 @@ class Greeks(Option):
         
         return theta
     
-    
-    
-    
-option = Greeks("call", 125.94, 125, 0.0446, 0.83, 0.0959)
-gamma = option.get_gamma()
-print(gamma)
